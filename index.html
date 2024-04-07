@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Nikkarsurea</title>
+		<style>
+			@font-face {
+				font-family: "Nikkarsurea"; /*a name to be used later*/
+				src: url("./Nikkarsurea.ttf") format("truetype"); /*URL to font*/
+			}
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f4f4f4;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+			.container {
+				width: 100%;
+				padding: 20px;
+				background-color: #fff;
+				border-radius: 5px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			}
+			h1 {
+				text-align: center;
+			}
+			label {
+				font-weight: bold;
+			}
+			input[type="text"],
+			textarea {
+				width: 100%;
+				padding: 10px;
+				margin-bottom: 15px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				box-sizing: border-box;
+			}
+			input[type="submit"] {
+				width: 100%;
+				background-color: #007bff;
+				color: #fff;
+				padding: 10px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			input[type="submit"]:hover {
+				background-color: #0056b3;
+			}
+			.result {
+				font-family: "Nikkarsurea";
+				white-space: pre-wrap;
+				font-size: 24px;
+			}
+		</style>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Nikkarsurea generator</h1>
+			<label>Text to Translate:</label>
+			<textarea id="textToTranslate" rows="4"></textarea>
+			<label for="targetLanguage">Translation:</label>
+			<div id="translationResult" class="result"></div>
+			<button id="save">Save IMG!</button>
+		</div>
+
+		<script>
+			const textArea = document.getElementById("textToTranslate");
+			const starget = document.getElementById("translationResult");
+			textArea.addEventListener("input", () => {
+				starget.innerHTML = textArea.value;
+			});
+
+			const btn = document.getElementById("save");
+			btn.addEventListener("click", () => {
+				html2canvas(document.querySelector("#translationResult")).then(
+					(canvas) => {
+						var link = document.createElement("a");
+						link.download = "OutpuNikka.png";
+						link.href = canvas.toDataURL();
+						link.click();
+					}
+				);
+			});
+		</script>
+	</body>
+</html>
